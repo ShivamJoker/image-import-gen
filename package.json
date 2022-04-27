@@ -2,6 +2,7 @@
   "name": "path-types",
   "version": "1.0.0",
   "description": "Generate types of all the file paths in a directory",
+  "repo": "https://github.com/ShivamJoker/Path-Types",
   "main": "index.ts",
   "type": "module",
   "bin": {
