@@ -37,37 +37,34 @@ program
   .addOption(
     new Option("-o, --output [output]", "Output file location").default(
       "./FilePaths.ts",
-      "output file path"
+      "FilePaths.ts"
     )
   )
   .addOption(
     new Option(
       "-e, --extension [extension...]",
       "File extension, eg. ts, js"
-    ).default("ts", "file extension")
+    ).default("ts", "ts")
   )
   .addOption(
     new Option("-n, --name [name]", "Type name").default(
       "FilePaths",
-      "type name"
+      "FilePaths"
     )
   )
   .addOption(
     new Option("-i, --ignore [ignore...]", "ignore paths").default(
       "node_modules",
-      "ignore these paths"
+      "node_modules"
     )
   )
   .addOption(
-    new Option("-w, --watch", "Enable watching").default(
-      false,
-      "Automatically generate types when file changes"
-    )
+    new Option("-w, --watch", "Enable watching").default(false, "disabled")
   )
   .addOption(
-    new Option("-k, --keep", "Keep file extension").default(
+    new Option("-k, --keep", "Keep file extension name").default(
       false,
-      "Do not remove file extension"
+      "disabled"
     )
   );
 
