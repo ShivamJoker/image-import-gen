@@ -3,11 +3,11 @@
 import fg from "fast-glob";
 import { writeFileSync } from "fs";
 import { createCommand, Option } from "commander";
-import { join } from "desm";
+import { join } from "path";
 
 const program = createCommand();
 
-const metaURL = import.meta.url;
+const cwd = process.cwd();
 
 const RESET = "\x1b[0m";
 const GREEN = "\x1b[32m";
@@ -81,7 +81,7 @@ const glob = `**/*.{${
 },}`;
 // output -> "**/*.{js,ts}"[Symbol]
 
-const absolutePath = join(metaURL, options.dir);
+const absolutePath = join(cwd, options.dir);
 
 const generateTypes = () => {
   let list = fg.sync(glob, {
@@ -106,7 +106,7 @@ const generateTypes = () => {
   const str = `export type ${options.name} =
   | "${unionList}";`;
 
-  writeFileSync(join(metaURL, options.output), str);
+  writeFileSync(join(cwd, options.output), str);
 
   console.log(`Types generated in ${options.output}.\n`);
 };
