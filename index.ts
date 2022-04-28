@@ -4,6 +4,7 @@ import fg from "fast-glob";
 import { writeFileSync } from "fs";
 import { createCommand, Option } from "commander";
 import { join } from "path";
+import { bold, green, red, yellow } from "colorette";
 
 const program = createCommand();
 
@@ -123,7 +124,7 @@ const generateTypes = () => {
 
   writeFileSync(join(cwd, options.output), str);
 
-  console.log(`Types generated in ${options.output}.\n`);
+  console.log(green(bold(`Types generated in ${options.output}.\n`)));
 };
 
 // run generate function once
@@ -138,12 +139,12 @@ if (options.watch) {
       ignoreInitial: true,
     })
     .on("add", (filename) => {
-      console.log(`${GREEN}New file added${RESET}`, filename);
+      console.log(green(`New file added ${filename}`));
       generateTypes();
     })
     .on("unlink", (filename) => {
-      console.log(`${RED}File Removed${RESET}`, filename);
+      console.log(red(`File removed ${filename}`));
       generateTypes();
     })
-    .on("ready", () => console.log("Watch mode enabled."));
+    .on("ready", () => console.log(yellow("Watch mode enabled!")));
 }
