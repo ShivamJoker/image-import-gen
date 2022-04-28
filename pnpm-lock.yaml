@@ -3,6 +3,7 @@ lockfileVersion: 5.3
 specifiers:
   '@types/node': ^17.0.29
   chokidar: ^3.5.3
+  colorette: ^2.0.16
   commander: ^9.2.0
   desm: ^1.2.0
   fast-glob: ^3.2.11
@@ -10,6 +11,7 @@ specifiers:
 
 dependencies:
   chokidar: 3.5.3
+  colorette: 2.0.16
   commander: 9.2.0
   desm: 1.2.0
   fast-glob: 3.2.11
@@ -78,6 +80,10 @@ packages:
       readdirp: 3.6.0
     optionalDependencies:
       fsevents: 2.3.2
+    dev: false
+
+  /colorette/2.0.16:
+    resolution: {integrity: sha512-hUewv7oMjCp+wkBv5Rm0v87eJhq4woh5rSR+42YSQJKecCqgIqNkZ6lAlQms/BwHPJA5NKMRlpxPRv0n8HQW6g==}
     dev: false
 
   /commander/9.2.0:

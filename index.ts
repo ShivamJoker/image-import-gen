@@ -9,13 +9,9 @@ const program = createCommand();
 
 const cwd = process.cwd();
 
-const RESET = "\x1b[0m";
-const GREEN = "\x1b[32m";
-const YELLOW = "\x1b[33m";
-const RED = "\x1b[31m";
-
 interface Opts {
   dir: string;
+  trim: number;
   output: string;
   extension: string[];
   name: string;
@@ -53,6 +49,12 @@ program
     )
   )
   .addOption(
+    new Option(
+      "-t, --trim <number>",
+      "Trim characters from end of path"
+    ).default(0, "None")
+  )
+  .addOption(
     new Option("-i, --ignore [ignore...]", "ignore paths").default(
       "node_modules",
       "node_modules"
@@ -83,6 +85,15 @@ const glob = `**/*.{${
 
 const absolutePath = join(cwd, options.dir);
 
+const removeFileExt = (path: string) => {
+  // split them, so that we can remove the extension
+  const pathArr = path.split(".");
+  // file ext will be in last idx
+  pathArr.pop();
+  //stitch them back
+  return pathArr.join(".");
+};
+
 const generateTypes = () => {
   let list = fg.sync(glob, {
     cwd: absolutePath,
@@ -91,17 +102,21 @@ const generateTypes = () => {
 
   // console.log(glob, list);
 
-  if (!options.keep) {
-    list = list.map((item) => {
-      // split them, so that we can remove the extension
-      const pathArr = item.split(".");
-      pathArr.pop();
-      //stitch them back
-      return pathArr.join(".");
+  const { keep, trim } = options;
+  // remove extension if keep is false or trim is needed
+  if (!keep || trim) {
+    list = list.map((path) => {
+      // only remove extension if user specifies
+      const pathStr = keep ? path : removeFileExt(path);
+      // remove chars from str if specied
+      return trim ? pathStr.slice(0, -trim) : pathStr;
     });
   }
 
-  let unionList = list.join('"\n  | "');
+  // put the paths array in set to remove any duplicates
+  const listSet = new Set([...list]);
+
+  let unionList = [...listSet].join('"\n  | "');
 
   const str = `export type ${options.name} =
   | "${unionList}";`;
