@@ -6,7 +6,7 @@
   "main": "index.ts",
   "type": "module",
   "bin": {
-    "file-path-types": "index.js"
+    "path-types": "index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -15,11 +15,13 @@
   "keywords": [
     "types",
     "generator",
-    "file",
-    "generator"
+    "file-types",
+    "types-generator",
+    "aws",
+    "lambda"
   ],
   "author": "shivam <hi@creativeshi.com>",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "chokidar": "^3.5.3",
     "commander": "^9.2.0",
@@ -29,5 +31,9 @@
   "devDependencies": {
     "@types/node": "^17.0.29",
     "typescript": "^4.6.3"
+  },
+  "preferGlobal": true,
+  "engines": {
+    "node": ">= 14"
   }
 }
