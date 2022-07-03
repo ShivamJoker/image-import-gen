@@ -1,26 +1,26 @@
 {
-  "name": "path-types",
+  "name": "image-import-gen",
   "version": "1.0.0",
-  "description": "Generate types of all the file paths in a directory",
-  "repo": "https://github.com/ShivamJoker/Path-Types",
+  "description": "Automatically generate import/exports for your images & icons",
+  "repo": "https://github.com/ShivamJoker/image-import-gen",
   "main": "index.ts",
   "type": "module",
   "bin": {
-    "path-types": "index.js"
+    "image-import-gen": "index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "tsc"
   },
   "keywords": [
-    "types",
+    "images",
     "generator",
     "file-types",
-    "types-generator",
-    "aws",
-    "lambda"
+    "import-generator",
+    "react",
+    "react-native"
   ],
-  "author": "shivam <hi@creativeshi.com>",
+  "author": "Shivam <hi@creativeshi.com>",
   "license": "MIT",
   "dependencies": {
     "chokidar": "^3.5.3",
