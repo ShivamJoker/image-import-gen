@@ -80,7 +80,8 @@ const generateImports = () => {
       throw Error("Failed to extract image name");
     }
 
-    importsStr += `import _${filename} from "./${path}";\n`;
+    const relativePath = options.dir === "./" ? "" : `${options.dir}/`;
+    importsStr += `import _${filename} from "./${relativePath}${path}";\n`;
     exportsStr += `export const ${filename} = _${filename};\n`;
   });
 
