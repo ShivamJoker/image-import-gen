@@ -75,6 +75,7 @@ const generateImports = () => {
   listSet.forEach((path) => {
     let filename = path.split("/").at(-1);
     filename = filename?.split(".").at(0);
+    filename = filename?.replace("-", "_");
 
     if (!filename) {
       throw Error("Failed to extract image name");
